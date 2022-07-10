@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Raise Bug</title>
+</head>
+<body>
+<h1>Raise New Bug</h1>
+<h1> Success </h1>
+<form action="raise" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" name="submit_form" value="Raise" >
+
+</form>
+</body>
+</html>

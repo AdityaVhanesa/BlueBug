@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blue Bug</title>
+    <link rel="stylesheet" href="{% static 'css/s.css' %}">
+</head>
+<body>
+<h1 class="test"> Welcome </h1>
+<h2>
+    {% for bug in bugs %}
+        <h3>Bug ID --> {{ bug.uuid }}</h3>
+        <h3>Bug Title --> {{ bug.title }}</h3>
+        <h3>Bug Description --> {{ bug.description }}</h3>
+        <h3>Raised By --> {{ bug.raised_by }}</h3>
+        <h3>Bug Status --> {{ bug.status }}</h3>
+        <a href="delete/{{ bug.uuid }}"> Delete </a>
+        <hr>
+    {% endfor %}
+</h2>
+<a href="raise">Raise New Bug</a>
+<div>
+</div>
+</body>
+</html>
