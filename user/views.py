@@ -16,7 +16,6 @@ def redirectToUser(request):
 class Index(View):
     def get(self, request):
         if request.user.is_authenticated:
-            print("User is login Already")
             return redirect("bug_index")
 
         context = {
@@ -27,6 +26,10 @@ class Index(View):
 
 # Register User
 class Register(View):
+
+    def get(self, request):
+        return render(request, 'login_templates/registration_index.html')
+
     def post(self, request):
         form = UserForm(postRequest=request, data=request.POST)
 
@@ -35,7 +38,7 @@ class Register(View):
             try:
                 if User.objects.get(username=email):
                     messages.error(request, "User Already Exist", extra_tags="user_exist_error")
-                    return redirect("index")
+                    return redirect("register_user")
             except User.DoesNotExist:
                 first_name = form.cleaned_data.get('first_name')
                 last_name = form.cleaned_data.get('last_name')
@@ -44,19 +47,21 @@ class Register(View):
                                          password=password, first_name=first_name,
                                          last_name=last_name)
 
-        return redirect("index")
+        return redirect("login_user")
 
 
 class Login(View):
+    def get(self, request):
+        return redirect('index')
+
     def post(self, request):
         form = LoginForm(postRequest=request, data=request.POST)
 
         if form.is_valid():
-            print(form.cleaned_data)
-            user = authenticate(username=form.cleaned_data.get("email"), password=form.cleaned_data.get("password"))
+            user = authenticate(username=form.cleaned_data.get("userId"), password=form.cleaned_data.get("userPassword"))
             if user is not None:
                 login(request, user)
                 return redirect("bug_index")
             else:
-                return render(request, "test_templates/test_failure.html")
-        return render(request, "test_templates/test_failure.html")
+                return redirect('login_user')
+        return redirect("login_user")

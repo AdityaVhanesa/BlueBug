@@ -1,1 +1,2 @@
-Coding Dojo Blue Bug Project. Also this
+# BlueBug
+Simple yet effective Bug tracking tool

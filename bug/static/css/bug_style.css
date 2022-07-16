@@ -1,0 +1,67 @@
+.test1 {
+    color: red;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.menu-bar {
+    background-color: #faf3dd;
+    color: #ffa69e;
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+
+.align-flex-start {
+    align-items: flex-start;
+}
+
+.paddign-left-5 {
+    padding-left: 5vw;
+}
+
+.paddign-right-5 {
+    padding-right: 5vw;
+}
+
+.margin-bottom-2 {
+    margin-bottom: 2vw;
+}
+
+.bug-box {
+    border: 2px solid #ffa69e;
+}
+
+.width-80 {
+    width: 90vw;
+}
+
+.sub-bug-box-left {
+    border-right: 1px solid black;
+    padding: 0.5vw;
+}
+
+.sub-bug-box-right {
+    border-left: 1px solid black;
+    padding: 0.5vw;
+}
+
+.margin-top-0-5 {
+    margin-top: 0.5vw;
+}
+
+.bottom-border {
+    border-bottom: 1px solid black;
+}
+
+.bug-box-sub-width {
+    width: 44vw;
+}
+.grow-1 {
+    flex-grow: 1;
+}
+
+.justify-flex-start {
+    justify-content: flex-start;
+}

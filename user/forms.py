@@ -75,16 +75,16 @@ class UserForm(forms.Form):
 
 
 class LoginForm(forms.Form):
-    email = forms.CharField(label="email", max_length=100, empty_value="__NA__")
-    password = forms.CharField(label="password", max_length=250, empty_value="__NA__")
+    userId = forms.CharField(label="userId", max_length=100, empty_value="__NA__")
+    userPassword = forms.CharField(label="userPassword", max_length=250, empty_value="__NA__")
 
     def __init__(self, postRequest, *args, **kwargs):
         super(LoginForm, self).__init__(*args, **kwargs)
         self.postRequest = postRequest
         self.emailRegEx = re.compile(r"^\S+@\S+$")
 
-    def clean_email(self):
-        data = self.cleaned_data.get("email")
+    def clean_userId(self):
+        data = self.cleaned_data.get("userId")
         if data == "__NA__":
             messages.error(self.postRequest, "Required", extra_tags="login_email_error")
             raise ValidationError("Email cannot be empty", code="invalid")
@@ -93,8 +93,8 @@ class LoginForm(forms.Form):
             raise ValidationError("Email is not valid", code='invalid')
         return data.lower()
 
-    def clean_password(self):
-        data = self.cleaned_data.get("password")
+    def clean_userPassword(self):
+        data = self.cleaned_data.get("userPassword")
         if data == "__NA__":
             messages.error(self.postRequest, "Required", extra_tags="login_password_error")
             raise ValidationError("Password cannot be empty", code="invalid")

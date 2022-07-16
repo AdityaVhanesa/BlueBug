@@ -1,0 +1,133 @@
+{% load static %}
+{% load flash_messages %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blue Bug</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+</head>
+<body>
+
+<div class="flex_box full-width">
+    <div class="c-1 left-welcome-div flex_box flex-direction-column justify-flex-end align-center">
+        <div class="margin-bottom-20">
+            <img src="../../static/icons/Programming-Bug-icon.png" alt="Bug-Icon-image">
+        </div>
+        <div class="flex_box flex-direction-column align-center margin-bottom-10 margin-top-3">
+            <div class="h2 message-font">Where</div>
+            <div class="h2 message-font">Engineers meet bugs</div>
+        </div>
+    </div>
+    <div class="c-1 flex_box flex-direction-column align-center">
+        <div class="margin-top-5">
+            <div class="h1 title-font">Blue Bug</div>
+        </div>
+        <div class="margin-top-10">
+            <div class="h2 welcome-font">Register to BlueBug</div>
+        </div>
+        <div class="margin-top-10">
+            <form action="register" method="post">
+                {% csrf_token %}
+                <div class="form-input-box">
+                    <div class="flex_box">
+                        <label for="first_name" class="c-1">First Name</label>
+                        <div class="c-4 flex_box flash-box justify-flex-end align-center">
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {% if message.tags|filterTagError:"first_name_error" %}
+                                        <div>{{ message }}</div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <input type="text" name="first_name" id="first_name">
+                </div>
+
+
+                <div class="form-input-box">
+                    <div class="flex_box">
+                        <label for="last_name" class="c-1">Last Name</label>
+                        <div class="c-4 flex_box flash-box justify-flex-end align-center">
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {% if message.tags|filterTagError:"last_name_error" %}
+                                        <div>{{ message }}</div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <input type="text" name="last_name" id="last_name">
+                </div>
+
+
+                <div class="form-input-box">
+                    <div class="flex_box">
+                        <label for="user_email" class="c-1">Email</label>
+                        <div class="flex_box flash-box c-4 justify-flex-end align-center">
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {% if message.tags|filterTagError:"email_error" %}
+                                        <div>{{ message }}</div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <input type="text" name="email" id="user_email">
+                </div>
+
+
+                <div class="form-input-box">
+                    <div class="flex_box">
+                        <label for="user_password" class="c-1">Password</label>
+                        <div class="flex_box flash-box c-4 justify-flex-end align-center">
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {% if message.tags|filterTagError:"password_error" %}
+                                        <div>{{ message }}</div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <input type="password" name="password" id="user_password">
+                </div>
+
+
+                <div class="form-input-box">
+                    <div class="flex_box">
+
+                        <label for="user_confirm_password" class="c-2">Confirm Password</label>
+                        <div class="flex_box c-4 justify-flex-end align-center flash-box">
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {% if message.tags|filterTagError:"confirm_password_error" %}
+                                        <div>{{ message }}</div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <input type="password" name="confirm_password" id="user_confirm_password">
+                </div>
+
+                <div class="form-input-box flex_box align-center justify-center">
+                    <input type="submit" value="Register" class="btn flex_box justify-center align-center">
+                </div>
+            </form>
+        </div>
+
+        <div class="h3 margin-top-3">Already registered?
+            <a href="login">login here</a>
+        </div>
+
+    </div>
+</div>
+
+
+</body>
+</html>

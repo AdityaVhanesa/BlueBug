@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/bug_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <title>Blue Bug</title>
+</head>
+<body>
+<div class="flex_box flex-direction-column align-center justify-center">
+
+    <div class="flex_box space-between full-width  menu-bar">
+        <div class="title-font c-2">
+            Blue Bug
+        </div>
+        <div class="c-3 flex_box flex_box flex-direction-column align-flex-end  full-width">
+            <div class="c-3">
+            </div>
+            <div class="c-2 flex_box align-center justify-center">
+                <a href="/"><div class="h2">Home</div></a>
+                <a href="raise"><div class="h2 padding-left">Raise</div></a>
+                <a href="logout"><div class="h2 padding-left">Logout</div></a>
+            </div>
+        </div>
+
+    </div>
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+{% extends "base_templates/menuBar_template.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blue Bug</title>
+    <link rel="stylesheet" href="{% static 'css/bug_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+{% block content %}
+    <div class="full-width paddign-left-5 margin-top-5 h1">
+
+    {% if bugs %}
+        Bugs List
+    {% else %}
+        Nothing to display
+    {% endif %}
+    </div>
+    <div class="paddign-left-5 full-width
+                paddign-right-5 margin-top-5
+                flex_box justify-flex-start
+                align-flex-start flex-direction-column">
+        {% for bug in bugs %}
+
+            <div class="flex_box bug-box margin-bottom-2 ">
+                <div class="c-1 flex_box flex-direction-column
+                        justify-flex-start align-flex-start sub-bug-box-left">
+                    <div class="h2 bug-box-sub-width">{{ bug.title }}</div>
+                    <div class="h3 margin-top-0-5">{{ bug.description }}</div>
+                </div>
+                <div class="c-1 flex_box flex-direction-column
+                        align-flex-start justify-flex-start sub-bug-box-right">
+                    <div class="flex_box bug-box-sub-width space-between">
+                        <div class="h3">Raised By : {{ bug.raised_by }}</div>
+                        <div class="h3">Open</div {{ bug.raised_by }}>
+                    </div>
+                    <div class="h3 bug-box-sub-width ">Severity Level: {{ bug.severity_level }}</div>
+                    <div class="h3 bug-box-sub-width ">Found In : {{ bug.found_in }}</div>
+                    <div class="h3 bug-box-sub-width ">Raised On : {{ bug.raised_on }}</div>
+                    <div class="bug-box-sub-width margin-top-0-5 bottom-border"></div>
+                    <div class="flex_box bug-box-sub-width space-around h3 margin-top-0-5">
+                        <a href="comment/{{ bug.id }}">Comment</a>
+                        <a href="edit/{{ bug.id }}"> Edit</a>
+                        <a href="close/{{ bug.id }}"> Close</a>
+                        <a href="delete/{{ bug.id }}"> Delete</a>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+{% endblock content %}
+
+</body>
+</html>

@@ -117,6 +117,18 @@ textarea {
     margin-top: 2vh;
 }
 
+.margin-top-10 {
+    margin-top: 10vh;
+}
+
+.margin-bottom-10 {
+    margin-bottom: 10vh;
+}
+
+.margin-bottom-20 {
+    margin-bottom: 20vh;
+}
+
 .flex-direction-column {
     flex-direction: column;
 }
@@ -126,20 +138,17 @@ textarea {
 }
 
 label {
-    margin-bottom: 2vh;
-    font-size: 2em;
-    width: 70%;
+    font-size: 1.2rem;
 }
 
 input {
+    margin-top: 1vh;
     margin-bottom: 2vh;
-    border: 2px solid black;
-    font-size: 1.5em;
-    height: 2em;
-    width: 50%;
-    border-radius: 25px;
-    padding-left: 1vw;
-    color: teal;
+    border-bottom: 2px solid #aed9e0;
+    font-size: 2rem;
+    height: 2.5rem;
+    width: 100%;
+    color: black;
 }
 
 .gap-5 {
@@ -167,11 +176,11 @@ input {
 }
 
 .btn {
-    background-color: lightseagreen;
-    border-radius: 0;
+    background-color: #aed9e0;
+    border-radius: 25px;
     color: black;
     border: 2px solid black;
-    box-shadow: 5px 5px 0 0 black;
+    width: 30%;
 }
 
 .btn:hover {
@@ -179,10 +188,7 @@ input {
 }
 
 .flash-box {
-    height: 3em;
-    width: 50%;
     color: red;
-    padding-left: 2vw;
 }
 
 .sighting-outer-box {
@@ -235,5 +241,49 @@ textarea {
 }
 
 .test {
-    color: blue;
+    color: #aed9e0;
 }
+
+.left-welcome-div {
+    background-color: #aed9e0;
+    height: 100vh;
+}
+
+.full-width {
+    width: 100vw;
+}
+
+.icon-box {
+    width: 50%;
+    height: 50%;
+    background-image: image("../../static/icons/Programming-Bug-icon.png");
+}
+
+.message-font {
+    font-family: cursive, sans-serif;
+}
+
+.welcome-font {
+    font-family: Optima, sans-serif;
+}
+
+.title-font {
+    color: #aed9e0;
+    font-family: Sofia, sans-serif;
+    font-size: 5rem;
+}
+
+.form-input-box {
+    width: 30vw;
+}
+
+a {
+    color: #aed9e0;
+}
+
+
+
+
+
+
+

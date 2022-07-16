@@ -8,12 +8,12 @@ from .models import Bugs
 
 class Index(View):
     def get(self, request):
-        return render(request, 'templates_Bugs/index.html')
+        return render(request, 'bug_templates/index.html')
 
 
 class RaiseBug(View):
     def get(self, request):
-        return render(request, 'templates_Bugs/create_bug.html', {"form": RaiseBugForm()})
+        return render(request, 'bug_templates/create_bug.html', {"form": RaiseBugForm()})
 
     def post(self, request):
         form = RaiseBugForm(request.POST)
