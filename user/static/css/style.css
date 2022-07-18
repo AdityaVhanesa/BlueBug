@@ -204,7 +204,7 @@ input {
     margin-bottom: 2vh;
 }
 
-textarea {
+.textarea {
     border: 2px solid black;
     width: 70%;
     height: 25vh;

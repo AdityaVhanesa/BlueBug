@@ -1,0 +1,87 @@
+{% extends "base_templates/menuBar_template.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blue Bug</title>
+    <link rel="stylesheet" href="{% static 'css/bug_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+{% block content %}
+    <div class="full-width paddign-left-5
+                paddign-left-5 paddign-right-5
+                h1 margin-top-5">
+
+        {{ bug.title }}
+    </div>
+    <div class="flex_box bug-box-comment margin-bottom-2 ">
+        <div class="c-1 flex_box flex-direction-column
+                        justify-flex-start align-flex-start sub-bug-box-left">
+            <div class="h3 margin-top-0-5 bug-box-sub-width bug-description-box">{{ bug.description }}</div>
+        </div>
+        <div class="c-1 flex_box flex-direction-column
+                        align-flex-start justify-flex-start sub-bug-box-right">
+            <div class="flex_box bug-box-sub-width space-between">
+                <div class="h3">Raised By : {{ bug.raised_by.get_full_name }}</div>
+                <div class="h3">{{ bug.status }}</div>
+            </div>
+            <div class="h3 bug-box-sub-width ">Severity Level: {{ bug.severity_level }}</div>
+            <div class="h3 bug-box-sub-width ">Found In : {{ bug.found_in }}</div>
+            <div class="h3 bug-box-sub-width ">Raised On : {{ bug.created_at }}</div>
+            <div class="bug-box-sub-width margin-top-0-5 bottom-border"></div>
+            <div class="flex_box bug-box-sub-width space-around h3 margin-top-0-5">
+                {% if request.user.id == bug.raised_by.id %}
+                    <a href="/bug/edit/{{ bug.id }}"> Edit</a>
+                {% endif %}
+                {% if bug.status.lower == "closed" %}
+                    <a href="/bug/open/{{ bug.id }}"> Re-Open</a>
+                {% else %}
+                    <a href="/bug/close/{{ bug.id }}"> Close</a>
+                {% endif %}
+                 {% if request.user.id == bug.raised_by.id %}
+                     <a href="/bug/delete/{{ bug.id }}"> Delete</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="full-width paddign-left-5
+                paddign-left-5 paddign-right-5
+                h1 margin-top-2">
+
+        Comments
+    </div>
+    <div class="flex_box width-80 gap-10">
+
+        <div class="c-1  test-border-black user-comment-outer-box">
+            {% for post in posts %}
+                <div class="full-width user-comment-box">
+                    {{ post.user.get_full_name }}
+                </div>
+                <div class="margin-top-0-5 user-comment-box margin-bottom-2">
+                    <div class="test-border-black user-sub-comment-box white-space">
+                        {{ post.comment }}
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+        <div class="c-1 flex_box flex-direction-column">
+            <form action="/bug/comment/{{ bug.id }}" method="post">
+                {% csrf_token %}
+                <div>
+                    <label for="text_comment"></label>
+                    <textarea name="comment" id="text_comment" cols="10" rows="10" class="textarea-comment"></textarea>
+                </div>
+                <input type="submit" value="Add Comment" class="btn flex_box justify-center align-center">
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}
+
+
+</body>
+</html>

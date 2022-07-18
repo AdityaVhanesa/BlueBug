@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.views import View
@@ -46,8 +46,9 @@ class Register(View):
                 User.objects.create_user(username=email, email=email,
                                          password=password, first_name=first_name,
                                          last_name=last_name)
+            return redirect("login_user")
 
-        return redirect("login_user")
+        return redirect("register_user")
 
 
 class Login(View):
@@ -58,10 +59,15 @@ class Login(View):
         form = LoginForm(postRequest=request, data=request.POST)
 
         if form.is_valid():
-            user = authenticate(username=form.cleaned_data.get("userId"), password=form.cleaned_data.get("userPassword"))
+            user = authenticate(username=form.cleaned_data.get("userId"),
+                                password=form.cleaned_data.get("userPassword"))
             if user is not None:
                 login(request, user)
                 return redirect("bug_index")
-            else:
-                return redirect('login_user')
         return redirect("login_user")
+
+
+# Logout user
+def Logout(request):
+    logout(request)
+    return redirect("index")

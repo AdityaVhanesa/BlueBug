@@ -65,3 +65,67 @@
 .justify-flex-start {
     justify-content: flex-start;
 }
+
+.bug-box-comment {
+    border: 2px solid black;
+}
+
+.user-comment-outer-box {
+    height: 45vh;
+    border: 2px solid black;
+    overflow-y: scroll;
+    text-align: justify;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+}
+.user-comment-box {
+    padding-left: 1vw;
+    padding-right: 1vw;
+    width: 39.6vw;
+}
+
+.user-sub-comment-box{
+    padding: 0.5vw;
+}
+
+.margin-bottom-1{
+    margin-bottom: 1vh;
+}
+
+.textarea-comment {
+    border: 2px solid black;
+    overflow-y: scroll;
+    width: 39.6vw;
+    text-align: justify;
+    padding: 0.5vh 0.5vw;
+}
+
+.width-40 {
+    width: 40vw;
+}
+
+.textarea-raise-bug {
+    border: 2px solid black;
+    display: block;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    font-size: 1.5rem;
+    padding: 1vw;
+    text-align: justify;
+    overflow-y: scroll;
+}
+
+.overflow-y {
+    overflow-y: scroll;
+}
+
+.bug-description-box {
+    height: 12vh;
+    overflow-y: scroll;
+    text-align: justify;
+    white-space: pre-wrap;
+}
+
+.white-space {
+    white-space: pre-wrap;
+}

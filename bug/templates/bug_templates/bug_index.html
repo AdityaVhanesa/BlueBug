@@ -13,11 +13,11 @@
 {% block content %}
     <div class="full-width paddign-left-5 margin-top-5 h1">
 
-    {% if bugs %}
-        Bugs List
-    {% else %}
-        Nothing to display
-    {% endif %}
+        {% if bugs %}
+            Bugs List
+        {% else %}
+            Nothing to display
+        {% endif %}
     </div>
     <div class="paddign-left-5 full-width
                 paddign-right-5 margin-top-5
@@ -29,23 +29,31 @@
                 <div class="c-1 flex_box flex-direction-column
                         justify-flex-start align-flex-start sub-bug-box-left">
                     <div class="h2 bug-box-sub-width">{{ bug.title }}</div>
-                    <div class="h3 margin-top-0-5">{{ bug.description }}</div>
+                    <div class="h3 margin-top-0-5 bug-description-box">{{ bug.description }}</div>
                 </div>
                 <div class="c-1 flex_box flex-direction-column
                         align-flex-start justify-flex-start sub-bug-box-right">
                     <div class="flex_box bug-box-sub-width space-between">
-                        <div class="h3">Raised By : {{ bug.raised_by }}</div>
-                        <div class="h3">Open</div {{ bug.raised_by }}>
+                        <div class="h3">Raised By : {{ bug.raised_by.get_full_name }}</div>
+                        <div class="h3">{{ bug.status }}</div>
                     </div>
                     <div class="h3 bug-box-sub-width ">Severity Level: {{ bug.severity_level }}</div>
                     <div class="h3 bug-box-sub-width ">Found In : {{ bug.found_in }}</div>
-                    <div class="h3 bug-box-sub-width ">Raised On : {{ bug.raised_on }}</div>
+                    <div class="h3 bug-box-sub-width ">Raised On : {{ bug.created_at }}</div>
                     <div class="bug-box-sub-width margin-top-0-5 bottom-border"></div>
                     <div class="flex_box bug-box-sub-width space-around h3 margin-top-0-5">
                         <a href="comment/{{ bug.id }}">Comment</a>
-                        <a href="edit/{{ bug.id }}"> Edit</a>
-                        <a href="close/{{ bug.id }}"> Close</a>
-                        <a href="delete/{{ bug.id }}"> Delete</a>
+                        {% if request.user.id == bug.raised_by.id %}
+                            <a href="edit/{{ bug.id }}"> Edit</a>
+                        {% endif %}
+                        {% if bug.status.lower == "closed" %}
+                            <a href="open/{{ bug.id }}"> Re-Open</a>
+                        {% else %}
+                            <a href="close/{{ bug.id }}"> Close</a>
+                        {% endif %}
+                        {% if request.user.id == bug.raised_by.id %}
+                            <a href="delete/{{ bug.id }}"> Delete</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

@@ -1,0 +1,40 @@
+{% extends "base_templates/menuBar_template.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blue Bug</title>
+    <link rel="stylesheet" href="{% static 'css/bug_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+{% block content %}
+    <div class="flex_box justify-center align-center full-width flex-direction-column">
+        <div class="width-40 margin-top-5">
+            <form action="/bug/edit/{{ bug.id }}" method="post">
+                {% csrf_token %}
+                <label for="bug_title" class="h2">Title</label>
+                <input type="text" name="bug_title" id="bug_title" class="white-space" value={{ bug.title }}>
+                <label for="bug_description" class="h2">Description</label>
+                <textarea name="bug_description" id="bug_description" cols="47" rows="10" class="textarea-raise-bug">
+                    {{ bug.description }}
+                </textarea>
+                <label for="bug_foundIn" class="h2">Found In</label>
+                <input type="text" name="bug_foundIn" id="bug_foundIn" value={{ bug.found_in }}>
+                <label for="bug_severityLevel" class="h2">Severity Level</label>
+                <input type="text" name="bug_severityLevel" id="bug_severityLevel" value={{ bug.severity_level }}>
+                <input type="submit" value="Update" class="btn flex_box align-center justify-center">
+            </form>
+
+        </div>
+
+
+    </div>
+
+
+{% endblock content %}
+
+</body>
+</html>
